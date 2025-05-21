@@ -1,25 +1,25 @@
-# 📊 Dashboard de Criptomoedas
+# 📊 Cryptocurrency Dashboard
 
-Este é um projeto de dashboard de criptomoedas desenvolvido com **Next.js**, **React**, **Tailwind CSS** e **Framer Motion**. O projeto consome uma API Node.js com dados da [CoinGecko API](https://www.coingecko.com/en/api), apresentando as principais informações das moedas em tempo real com um layout responsivo, dark mode e animações modernas.
+This is a cryptocurrency dashboard project built with **Next.js**, **React**, **Tailwind CSS**, and **Framer Motion**. It consumes a Node.js API with data from the [CoinGecko API](https://www.coingecko.com/en/api), displaying real-time information about cryptocurrencies with a responsive layout, dark mode, and modern animations.
 
 ---
 
-## 🚀 Funcionalidades
+## 🚀 Features
 
-- Listagem das principais criptomoedas
-- Exibição de preço atual e variação nas últimas 24h
-- Design responsivo com **modo claro e escuro**
-- Animações suaves com **Framer Motion**
+- List of major cryptocurrencies
+- Display of current price and 24h variation
+- Responsive design with **light and dark mode**
+- Smooth animations with **Framer Motion**
 
 ---
 
 ## 🖼️ Interface
 
-Adicionar imagens da interface do projeto. 
+Add images of the project interface here.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
 ### Frontend
 - [Next.js](https://nextjs.org/)
@@ -35,10 +35,9 @@ Adicionar imagens da interface do projeto.
 - [CoinGecko API](https://www.coingecko.com/en/api)
 - [Node.js](https://nodejs.org/en)
 
-
 ---
 
-## ⚙️ Como rodar o projeto
+## ⚙️ How to Run the Project
 
 ### 🔧 Backend
 
@@ -48,7 +47,7 @@ npm install
 node server.js
 ```
 
-O servidor será iniciado em: `http://localhost:5001`
+The server will run at: `http://localhost:5001`
 
 ### 💻 Frontend
 
@@ -58,32 +57,32 @@ npm install
 npm run dev
 ```
 
-O aplicativo será executado em: `http://localhost:3000`
+The application will run at: `http://localhost:3000`
 
 ---
 
-## 🌙 Tema Escuro/Claro
+## 🌙 Light/Dark Theme
 
-Você pode alternar entre o modo claro e escuro através do botão no cabeçalho. A preferência de tema é salva no `localStorage`.
-
----
-
-## 📌 Observações
-
-- Certifique-se de que o backend está rodando corretamente antes de iniciar o frontend.
-- Os dados são consumidos da CoinGecko, que tem limite de requisições por minuto em sua API gratuita.
-- O projeto está pronto para deploy com Vercel (frontend) e Render/Heroku (backend).
+You can switch between light and dark mode using the button in the header. The theme preference is saved in `localStorage`.
 
 ---
 
-## 🧠 Autor
+## 📌 Notes
 
-Desenvolvido por **Artur Rodrigues** 🧑‍💻  
-Engenharia de Software @ Universidade de Brasília  
-LinkedIn: [linkedin.com/in/arturrodrigues](https://linkedin.com/in/arturrsa19)
+- Make sure the backend is running before starting the frontend.
+- The data is fetched from CoinGecko, which has a rate limit on its free API.
+- The project is ready for deployment with Vercel (frontend) and Render/Heroku (backend).
 
 ---
 
-## 📄 Licença
+## 🧠 Author
 
-Este projeto está licenciado sob a **MIT License**.
+Developed by **Artur Rodrigues** 🧑‍💻  
+Software Engineering @ University of Brasília  
+LinkedIn: https://linkedin.com/in/arturrsa19
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
