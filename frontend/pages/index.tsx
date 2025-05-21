@@ -1,25 +1,38 @@
-import Head from 'next/head';
-import { useState } from 'react';
-import Header from '../components/Header';
-import DashboardCard from '../components/DashboardCard';
-import React from 'react';
+
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function Home() {
-  const [user] = useState({ name: 'Artur' });
+  const [cryptos, setCryptos] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('http://localhost:5001/api/crypto-prices');
+        setCryptos(res.data);
+      } catch (error) {
+        console.error('Erro ao buscar dados de criptomoedas:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <>
-      <Head >
-        <title>Cripto Dashboard com IA</title>
-      </Head>
-      <main className="min-h-screen bg-gray-950 text-white">
-        <Header user={user} />
-        <section className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <DashboardCard title="Bitcoin" value="$XX,XXX" trend="up" />
-          <DashboardCard title="Ethereum" value="$X,XXX" trend="down" />
-          <DashboardCard title="Insights da IA" value="BTC pode subir 5%" trend="flat" />
-        </section>
-      </main>
-    </>
+    <div className="p-4">
+      <h1 className="text-3xl font-bold mb-4">📊 Dashboard de Criptomoedas</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {cryptos.map((coin: any) => (
+          <div key={coin.id} className="p-4 bg-white rounded-xl shadow">
+            <div className="flex items-center gap-2">
+              <img src={coin.image} alt={coin.name} className="w-8 h-8" />
+              <h2 className="text-xl font-semibold">{coin.name} ({coin.symbol.toUpperCase()})</h2>
+            </div>
+            <p>💰 Preço atual: R$ {coin.current_price.toLocaleString('pt-BR')}</p>
+            <p>📈 Variação 24h: {coin.price_change_percentage_24h.toFixed(2)}%</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
