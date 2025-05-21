@@ -11,7 +11,7 @@ app.use(express.json());
 // Rota principal de preços cripto
 app.use('/api', cryptoRoutes);
 
-const PORT = process.env.PORT || 5001;
+const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
