@@ -14,4 +14,5 @@ app.use('/api', cryptoRoutes);
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Rota de preços cripto disponível em: http://localhost:${PORT}/api/crypto-prices`);
 });
