@@ -44,7 +44,7 @@ Add images of the project interface here.
 ```bash
 cd backend
 npm install
-node server.js
+npm run dev
 ```
 
 The server will run at: `http://localhost:5001`
