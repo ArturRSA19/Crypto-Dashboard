@@ -6,9 +6,8 @@ export async function getCryptoPrices() {
   const response = await axios.get(`${BASE_URL}/coins/markets`, {
     params: {
       vs_currency: 'usd',
-      ids: 'bitcoin,ethereum,cardano',
       order: 'market_cap_desc',
-      per_page: 3,
+      per_page: 250, // ou 50, 100, etc.
       page: 1,
       sparkline: false
     }
