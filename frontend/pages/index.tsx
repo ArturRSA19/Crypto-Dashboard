@@ -4,13 +4,18 @@ import Header from '../components/Header';
 import { LineChart, DollarSign, TrendingUp } from 'lucide-react';
 
 export default function Home() {
-  const [cryptos, setCryptos] = useState([]);
+  const [cryptos, setCryptos] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get('http://localhost:5001/api/crypto-prices');
-        setCryptos(res.data);
+        // Normaliza para evitar null
+        const normalized = res.data.map((coin: any) => ({
+          ...coin,
+          price_change_percentage_24h: coin.price_change_percentage_24h ?? null,
+        }));
+        setCryptos(normalized);
       } catch (error) {
         console.error('Erro ao buscar dados de criptomoedas:', error);
       }
@@ -38,13 +43,18 @@ export default function Home() {
                   {coin.name} ({coin.symbol.toUpperCase()})
                 </h2>
               </div>
+
               <p className="flex items-center gap-1">
                 <DollarSign className="w-4 h-4 mr-2" />
                 Preço atual: R$ {coin.current_price.toLocaleString('pt-BR')}
               </p>
+
               <p className="flex items-center gap-1">
                 <TrendingUp className="w-4 h-4 mr-2" />
-                Variação 24h: {coin.price_change_percentage_24h.toFixed(2)}%
+                Variação 24h:{' '}
+                {coin.price_change_percentage_24h != null
+                  ? `${coin.price_change_percentage_24h.toFixed(2)}%`
+                  : '–'}
               </p>
             </div>
           ))}
