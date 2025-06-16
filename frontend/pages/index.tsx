@@ -5,18 +5,7 @@ import { PageTitle } from '../components/PageTitle';
 import { Trending } from '../components/Trending';
 import { SearchBar } from '../components/SearchBar';
 import { CryptoTable } from '../components/CryptoTable';
-
-interface Crypto {
-  id: string;
-  name: string;
-  symbol: string;
-  image: string;
-  current_price: number;
-  market_cap: number;
-  total_volume: number;
-  price_change_percentage_24h: number;
-  sparkline_in_7d: { price: number[] };
-}
+import Crypto from 'types/crypto';
 
 export default function Home() {
   const [cryptos, setCryptos] = useState<Crypto[]>([]);
