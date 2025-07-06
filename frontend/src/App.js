@@ -42,7 +42,7 @@ const formatMarketCap = (value) => {
 const ThemeSwitcher = ({ theme, toggleTheme }) => (
   <button
     onClick={toggleTheme}
-    className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+    className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-black"
     aria-label="Toggle theme"
   >
     {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -52,7 +52,7 @@ const ThemeSwitcher = ({ theme, toggleTheme }) => (
 const Header = ({ theme, toggleTheme, searchTerm, setSearchTerm }) => (
   <header className="p-4 flex justify-between items-center bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-20">
     <div className="flex items-center gap-3">
-        <div className="p-2 bg-indigo-600 rounded-lg">
+        <div className="p-2 bg-black rounded-lg">
             <Activity className="w-6 h-6 text-white" />
         </div>
         <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">CryptoDash</h1>
@@ -65,7 +65,7 @@ const Header = ({ theme, toggleTheme, searchTerm, setSearchTerm }) => (
           placeholder="Search coin..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-40 md:w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-40 md:w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-black"
         />
       </div>
       <a
@@ -73,7 +73,7 @@ const Header = ({ theme, toggleTheme, searchTerm, setSearchTerm }) => (
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub Repository"
-        className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-black"
       >
         <Github className="w-5 h-5" />
       </a>
@@ -187,7 +187,7 @@ const AnalysisModal = ({ isOpen, onClose, coin, analysis, isLoading }) => {
             <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl transform transition-all max-h-[90vh] flex flex-col">
                 <header className="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
                     <div className="flex items-center gap-3">
-                        <Sparkles className="w-6 h-6 text-indigo-500" />
+                        <Sparkles className="w-6 h-6 text-black" />
                         <h2 className="text-xl font-bold text-gray-900 dark:text-white">AI Analysis: {coin?.name}</h2>
                     </div>
                     <button onClick={onClose} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
@@ -197,7 +197,7 @@ const AnalysisModal = ({ isOpen, onClose, coin, analysis, isLoading }) => {
                 <div className="p-6 overflow-y-auto">
                     {isLoading ? (
                         <div className="flex flex-col items-center justify-center h-64">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
                             <p className="mt-4 text-gray-600 dark:text-gray-400">Our AI is analyzing the data...</p>
                         </div>
                     ) : (
@@ -337,7 +337,7 @@ const MainChart = ({ coinData, selectedCoin, setSelectedCoin }) => {
                     </ResponsiveContainer>
                 </div>
                  <div className="flex justify-center">
-                    <button onClick={handleAnalyzeCoin} disabled={isAnalyzing} className="flex items-center gap-2 px-6 py-3 font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button onClick={handleAnalyzeCoin} disabled={isAnalyzing} className="flex items-center gap-2 px-6 py-3 font-semibold text-white bg-black rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-offset-gray-900 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
                         <span>{isAnalyzing ? 'Analyzing...' : `✨ AI Analysis for ${activeCoin.name}`}</span>
                     </button>
                 </div>
@@ -417,7 +417,7 @@ export default function App() {
                 <div className="xl:col-span-1 h-[520px] overflow-y-auto bg-white dark:bg-gray-900 rounded-lg shadow-md p-2 space-y-2">
                      <h3 className="text-lg font-bold p-2">Top Movers</h3>
                      {coins.slice(0, 10).map(coin => (
-                         <div key={coin.id} onClick={() => setSelectedCoin(coin.id)} className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${selectedCoin === coin.id ? 'bg-indigo-100 dark:bg-indigo-900/50' : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'}`}>
+                         <div key={coin.id} onClick={() => setSelectedCoin(coin.id)} className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${selectedCoin === coin.id ? 'bg-gray-200 dark:bg-gray-800/50' : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'}`}>
                             <div className="flex items-center gap-3">
                                 <img src={coin.image} alt={coin.name} className="w-8 h-8 rounded-full"/>
                                 <div>
