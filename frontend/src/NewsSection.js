@@ -55,7 +55,7 @@ export default function NewsSection() {
         <ul className="space-y-2">
           {news.map((item) => (
             <li key={item.id} className="border-b border-gray-200 dark:border-gray-800 pb-2 last:border-0 last:pb-0">
-              <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+              <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-black dark:text-gray-300 hover:underline">
                 {item.title}
               </a>
               <p className="text-xs text-gray-500 dark:text-gray-400">{item.source}</p>
