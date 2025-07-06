@@ -323,7 +323,13 @@ const MainChart = ({ coinData, selectedCoin, setSelectedCoin }) => {
                             </defs>
                             <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.2} vertical={false} stroke="rgb(156 163 175 / 0.5)" />
                             <XAxis dataKey="date" tick={{ fill: 'rgb(107 114 128)', fontSize: 12 }} axisLine={false} tickLine={false} />
-                            <YAxis tickFormatter={(val) => `$${(val/1000)}k`} tick={{ fill: 'rgb(107 114 128)', fontSize: 12 }} axisLine={false} tickLine={false} domain={['dataMin', 'dataMax']} />
+                            <YAxis
+                                tickFormatter={(val) => formatCurrency(val)}
+                                tick={{ fill: 'rgb(107 114 128)', fontSize: 12 }}
+                                axisLine={false}
+                                tickLine={false}
+                                domain={['dataMin', 'dataMax']}
+                            />
                             <Tooltip content={<CustomTooltip />} />
                             <Area type="monotone" dataKey="price" stroke={strokeColor} fill={fillGradient} strokeWidth={2} />
                         </AreaChart>
