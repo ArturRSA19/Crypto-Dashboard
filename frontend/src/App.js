@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Sun, Moon, Search, ChevronUp, ChevronDown, Activity, Sparkles, X, Github } from 'lucide-react';
+import NewsSection from './NewsSection';
 
 // --- Mock Data (used as a fallback) ---
 const mockCryptoData = [
@@ -431,6 +432,7 @@ export default function App() {
             </div>
         )}
         {!loading && <CoinList coins={filteredCoins} />}
+        {!loading && <NewsSection />}
       </main>
     </div>
   );

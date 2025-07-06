@@ -63,6 +63,27 @@ app.get('/api/crypto', async (req, res) => {
   }
 });
 
+/**
+ * @route   GET /api/news
+ * @desc    Get latest cryptocurrency news
+ * @access  Public
+ */
+app.get('/api/news', async (req, res) => {
+  try {
+    const apiUrl = 'https://min-api.cryptocompare.com/data/v2/news/?lang=EN';
+    const response = await axios.get(apiUrl);
+    // CryptoCompare returns news articles in the `Data` property
+    if (response.data && response.data.Data) {
+      res.status(200).json(response.data.Data);
+    } else {
+      res.status(500).json({ message: 'Invalid response from news API' });
+    }
+  } catch (error) {
+    console.error('Error fetching news:', error.message);
+    res.status(500).json({ message: 'Could not fetch news data' });
+  }
+});
+
 // --- Server Startup ---
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
