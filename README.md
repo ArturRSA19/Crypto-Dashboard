@@ -1,6 +1,6 @@
 ﻿# CryptoDash 📈 - AI-Powered Cryptocurrency Dashboard
 
-CryptoDash is a sleek, modern, and responsive web application that provides real-time cryptocurrency market data. It features an interactive interface, beautiful charts, and leverages the power of the Google Gemini API to deliver AI-generated analysis for individual coins.
+CryptoDash is a sleek, modern, and responsive web application that provides real-time cryptocurrency market data. It features an interactive interface, beautiful charts, and uses OpenAI on the backend to deliver AI-generated analysis for individual coins.
 
 ![image](https://github.com/user-attachments/assets/5abada00-e25d-49e9-bb7f-5d640081ce0e)
 
@@ -11,7 +11,7 @@ CryptoDash is a sleek, modern, and responsive web application that provides real
 
 * **Real-Time Data**: Fetches and displays the latest market data for the top 100 cryptocurrencies.
 * **Interactive Charts**: Visualizes price history with beautiful, interactive charts from Recharts.
-* **💡 AI-Powered Analysis**: Integrates Google's Gemini API to provide on-demand, in-depth analysis of any selected cryptocurrency.
+* **💡 AI-Powered Analysis**: Uses OpenAI on-demand to provide in-depth analysis of any selected cryptocurrency.
 * **🌓 Light & Dark Mode**: A seamless theme-switching experience for user comfort.
 * **🔍 Live Search**: Instantly filter and find coins by name or symbol.
 * **📱 Fully Responsive**: A clean and functional UI that works perfectly on desktop, tablets, and mobile devices.
@@ -38,7 +38,7 @@ This project is a full-stack application built with modern technologies.
 
 **API & Services:**
 * **[CoinGecko API](https://www.coingecko.com/en/api)**: For real-time cryptocurrency market data.
-* **[Google Gemini API](https://ai.google.dev/)**: For generating AI-powered coin analysis.
+* **[OpenAI API](https://platform.openai.com/)**: For generating AI-powered coin analysis.
 
 ---
 
@@ -49,7 +49,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 ### Prerequisites
 
 * **Node.js**: Make sure you have Node.js installed (which includes npm). You can download it from [nodejs.org](https://nodejs.org/).
-* **Gemini API Key**: You need an API key from Google to use the AI features. Get one for free at [Google AI Studio](https://aistudio.google.com/app/apikey).
+* **OpenAI API Key**: Configure `OPENAI_API_KEY` in backend `.env` (you can use your test credits).
 
 ### Installation & Setup
 
@@ -67,6 +67,9 @@ Follow these instructions to get a copy of the project up and running on your lo
     # Install dependencies
     npm install
 
+    # Create backend .env from template and add your OpenAI key
+    copy .env.example .env
+
     # Start the backend server (it will run on http://localhost:5000)
     node server.js
     ```
@@ -82,14 +85,7 @@ Follow these instructions to get a copy of the project up and running on your lo
     npm install
     ```
 
-4.  **Create the Environment File**
-    * In the `frontend` directory, create a new file named `.env`.
-    * Add your Google Gemini API key to this file:
-        ```
-        REACT_APP_GEMINI_API_KEY=YOUR_API_KEY_HERE
-        ```
-
-5.  **Run the Frontend**
+4.  **Run the Frontend**
     ```bash
     # Start the React development server (it will open in your browser)
     npm start
@@ -106,6 +102,7 @@ The project uses a monorepo-style structure to keep the frontend and backend cod
     crypto-dashboard-project/
     ├── backend/
     │   ├── node_modules/
+    │   ├── .env                  # Backend env vars (OpenAI key/model)
     │   ├── package.json
     │   └── server.js             # Express server and API logic
     ├── frontend/
@@ -114,7 +111,6 @@ The project uses a monorepo-style structure to keep the frontend and backend cod
     │   ├── src/
     │   │   ├── App.js            # Main React application component
     │   │   └── index.css         # Tailwind CSS directives
-    │   ├── .env                  # Environment variables (for API keys)
     │   ├── package.json
     │   └── tailwind.config.js    # Tailwind CSS configuration
     ├── .env                      # Environment variables (for API keys)
@@ -151,6 +147,35 @@ Fetches market data for the top 100 cryptocurrencies from the CoinGecko API.
 **Error Response:**
 * **Code:** 500 Internal Server Error
 * **Content:** `{ "message": "Internal Server Error..." }`
+
+### POST `/api/analyze`
+
+Generates AI analysis for a selected cryptocurrency via OpenAI (called securely from backend).
+
+**Request Body:**
+```json
+{
+    "coinName": "Bitcoin",
+    "coinSymbol": "btc",
+    "currentPrice": 61000.5,
+    "change24h": 1.25
+}
+```
+
+**Success Response:**
+* **Code:** 200
+* **Content:**
+    ```json
+    {
+        "analysis": "..."
+    }
+    ```
+
+**Possible Error Responses:**
+* **400** invalid payload
+* **429** local/backend rate limit or OpenAI quota/rate limit
+* **503** missing `OPENAI_API_KEY` on backend
+* **500** unexpected backend error
 
 ---
 
